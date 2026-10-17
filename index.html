@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schraubenzieher-Tipps — Kreuzschlitz & Co.</title>
+  <style>
+    :root {
+      --primary: #b7472a;
+      --bg: #0a0e14;
+      --card: #111820;
+      --text: #d0d6e0;
+      --muted: #8890a0;
+      --border: #2a3040;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #1a1520 0%, #0a0e14 100%);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-bottom: 2px solid var(--primary);
+    }
+    header h1 {
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+    header p { color: var(--muted); font-size: 1rem; }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+    .tab-nav {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0;
+    }
+    .tab-btn {
+      padding: 0.6rem 1.2rem;
+      background: transparent;
+      color: var(--muted);
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card h2 {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .card h3 {
+      font-size: 1.1rem;
+      color: #fff;
+      margin: 1rem 0 0.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .grid-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .grid-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .grid-item .caption {
+      padding: 0.8rem;
+      font-size: 0.9rem;
+    }
+    .grid-item .caption strong {
+      display: block;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+    .grid-item .caption p { color: var(--muted); font-size: 0.85rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      padding: 0.7rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      background: #1a2030;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+    td { font-size: 0.9rem; }
+    tr:hover td { background: #161d28; }
+    .warn {
+      background: #1a1520;
+      border-left: 3px solid var(--primary);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .warn strong { color: var(--primary); }
+    .tip {
+      background: #142020;
+      border-left: 3px solid #3c7881;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .tip strong { color: #3c7881; }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .badge-bad { background: #2a1520; color: #e05560; }
+    .badge-good { background: #152a1a; color: #55c070; }
+    .badge-ok { background: #2a2515; color: #c0a040; }
+    .schematic {
+      background: #111820;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 1rem 0;
+      text-align: center;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.4rem; }
+      .tab-btn { padding: 0.5rem 0.8rem; font-size: 0.85rem; }
+      .card { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 screwdriver-tipps</h1>
+    <p>Tipps, Vergleich &amp; Wissen rund um Schraubenzieher</p>
+  </header>
+
+  <div class="container">
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="showTab(event, 'overview')">Übersicht</button>
+      <button class="tab-btn" onclick="showTab(event, 'defect')">3 Zacken Problem</button>
+      <button class="tab-btn" onclick="showTab(event, 'types')">Typen</button>
+      <button class="tab-btn" onclick="showTab(event, 'tips')">Tipps</button>
+    </div>
+
+    <!-- Tab 1: Übersicht -->
+    <div id="tab-overview" class="tab-content active">
+      <div class="card">
+        <h2>Über dieses Projekt</h2>
+        <p>
+          Dieser Schraubenzieher-Tipp gibt Ihnen einen Überblick über die verschiedenen
+          Schraubenzieher-Typen und zeigt ein häufiges Problem: <strong>Kreuzschlitzspitzen
+          mit nur 3 von 4 Zacken</strong> — ein Zeichen von Verschleiß oder schlechter Fertigungsqualität.
+        </p>
+        <h3>Wussten Sie?</h3>
+        <p>
+          Der Phillips-Kreuzschlitz wurde 1936 von Henry F. Phillips patentiert. Die Kreuzform
+          erlaubt es, den Schraubenzieher besser zu zentrieren als beim Schlitzschraubenzieher
+          und mehr Drehmoment zu übertragen. Allerdings neigt die Spitze bei Verschleiß zum
+          "Durchdrehen" (Cam-out), was Schraubenköpfe zerstören kann.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Häufige Schraubenzieher-Typen</h2>
+        <div class="grid">
+          <div class="grid-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flat_minus_screwdriver_on_table.jpg/600px-Flat_minus_screwdriver_on_table.jpg"
+                 alt="Schlitzschraubenzieher" loading="lazy">
+            <div class="caption">
+              <strong>🔧 Schlitzschraubenzieher (SL)</strong>
+              <p>Der älteste und einfachste Typ. Flacher Schlitz im Schraubenkopf, passend zum Schraubenzieher.</p>
+            </div>
+          </div>
+          <div class="grid-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Phillips_screwdriver_1.png/600px-Phillips_screwdriver_1.png"
+                 alt="Kreuzschlitzschraubenzieher Phillips" loading="lazy">
+            <div class="caption">
+              <strong>✚ Kreuzschlitz (PH/Phillips)</strong>
+              <p>Kreuzförmige Spitze für bessere Zentrierung und höheres Drehmoment. Größen: PH00, PH0, PH1, PH2, PH3.</p>
+            </div>
+          </div>
+          <div class="grid-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Pozi_screwdriver_2.png/600px-Pozi_screwdriver_2.png"
+                 alt="Kreuzschlitzschraubenzieher Pozidriv" loading="lazy">
+            <div class="caption">
+              <strong>★ Pozidriv (PZ)</strong>
+              <p>Weiterentwicklung von Phillips mit zusätzlichen Rippen. Bessere Kraftübertragung, kein Cam-out.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Weitere Typen</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Typ</th>
+              <th>Bezeichnung</th>
+              <th>Beschreibung</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>⬡ Innensechskant (Inbus/Hex)</td>
+              <td>Hex</td>
+              <td>Sechskantiger Einsatz, häufig bei Möbeln (IKEA) und Fahrrädern.</td>
+            </tr>
+            <tr>
+              <td>✦ Torx (TX)</td>
+              <td>TX / T-Star</td>
+              <td>Sechszack-Stern, sehr gute Kraftübertragung, kein Cam-out. Häufig bei Autos und Elektronik.</td>
+            </tr>
+            <tr>
+              <td>⊞ JIS (Japanese Industrial Standard)</td>
+              <td>JIS</td>
+              <p>Ähnelt Phillips, aber ohne den "Ausbeul-Effekt". Häufig bei japanischen Fahrzeugen und Motorrädern.</td>
+            </tr>
+            <tr>
+              <td>⊕ Robertson (Square)</td>
+              <td>sq</td>
+              <td>Viereckiger Einsatz, in Kanada weit verbreitet. Sehr guter Halt, wenig Durchdrehen.</td>
+            </tr>
+            <tr>
+              <td>⬢ Tri-Wing</td>
+              <td>TW</td>
+              <td>Dreizack, vor allem bei Nintendo-Geräten und Flugzeugen.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tab 2: 3 Zacken Problem -->
+    <div id="tab-defect" class="tab-content">
+      <div class="card">
+        <h2>Das Problem: Kreuzschlitz mit nur 3 Zacken</h2>
+        <p>
+          Ein intakter Phillips-Kreuzschlitz hat 4 Zacken (plus einen kleinen Spalt dazwischen).
+          Wenn eine Spitze abgenutzt ist oder mangelhaft gefertigt wurde, kann es vorkommen,
+          dass eine Zacke fehlt oder verschlissen ist — es bleiben nur noch 3 übrig.
+        </p>
+        <div class="warn">
+          <strong>⚠ Warnung:</strong>
+          Ein Schraubenzieher mit fehlender Zacke sollte sofort ersetzt werden. Er kann den
+          Schraubenkopf zerstören ("ausbeulen") und das Werkzeug kann unkontrolliert wegrutschen.
+        </div>
+        <h3>Ursachen für verschlissene/fehlende Zacken</h3>
+        <ul>
+          <li><strong>Verschleiß:</strong> Häufiges Verwenden mit hohem Druck führt zu abgerundeten Zacken</li>
+          <li><strong>Schlechte Qualität:</strong> Billig-Werkzeuge haben oft ungleichmäßige Härting</li>
+          <li><strong>Falsche Größe:</strong> Ein PH1-Bit in PH2-Schraubenköpfen verschleißt schneller</li>
+          <li><strong>Akkuschrauber:</strong> Zu hohe Drehmoment-Einstellung kann Spitzen zerstören</li>
+          <li><strong>Korrosion:</strong> Rost kann Zacken ausfransen lassen</li>
+        </ul>
+        <h3>Folgen</h3>
+        <table>
+          <thead>
+            <tr><th>Problem</th><th>Folge</th><th>Schweregrad</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cam-out (Durchdrehen)</td>
+              <td>Schraubenkopf wird beschädigt, Schraube lässt sich nicht mehr lösen</td>
+              <td><span class="badge badge-bad">Hoch</span></td>
+            </tr>
+            <tr>
+              <td>Ungleichmäßige Kraftübertragung</td>
+              <td>Schraube wird nicht fest genug angezogen</td>
+              <td><span class="badge badge-bad">Hoch</span></td>
+            </tr>
+            <tr>
+              <td>Weggleiten des Werkzeugs</td>
+              <td>Gefahr der Verletzung, Kratzer am Werkstück</td>
+              <td><span class="badge badge-bad">Hoch</span></td>
+            </tr>
+            <tr>
+              <td>Korrosionsbeschleunigung</td>
+              <td>Abriebpartikel fördern Rostbildung</td>
+              <td><span class="badge badge-ok">Mittel</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip">
+        <strong>💡 Tipp:</strong>
+        Prüfen Sie Ihre Schraubenzieher regelmäßig auf Verschleiß. Ein guter Phillips-Bit sitzt
+        ohne Spiel im Schraubenkopf und zeigt keine abgerundeten Kanten.
+      </div>
+    </div>
+
+    <!-- Tab 3: Typen -->
+    <div id="tab-types" class="tab-content">
+      <div class="card">
+        <h2>Vergleich der Kreuzschlitz-Typen</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Eigenschaft</th>
+              <th>Phillips (PH)</th>
+              <th>Pozidriv (PZ)</th>
+              <th>Torx (TX)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Form</td>
+              <td>Kreuz mit 4 Zacken</td>
+              <td>Kreuz + 4 Zusatzrippen</td>
+              <td>6-zackiger Stern</td>
+            </tr>
+            <tr>
+              <td>Entwicklung</td>
+              <td>1936 von H.F. Phillips</td>
+              <td>1960er Jahre</td>
+              <td>1967 von Camcar Textron</td>
+            </tr>
+            <tr>
+              <td>Cam-out</td>
+              <td>Ja (gewollt bei Überlast)</td>
+              <td>Sehr gering</td>
+              <td>Nein</td>
+            </tr>
+            <tr>
+              <td>Drehmoment</td>
+              <td>Mittel</td>
+              <td>Hoch</td>
+              <td>Sehr hoch</td>
+            </tr>
+            <tr>
+              <td>Häufigkeit</td>
+              <td>Sehr hoch (Standard)</td>
+              <td>Hoch (Holz/Möbel)</td>
+              <td>Mittel (Auto/Elektronik)</td>
+            </tr>
+            <tr>
+              <td>Empfohlen für</td>
+              <td>Alltagsgebrauch</td>
+              <td>Möbelbau, Holz</td>
+              <td>Präzision, Autos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h2>Phillips-Größen</h2>
+        <table>
+          <thead>
+            <tr><th>Größe</th><th>Spittdurchmesser</th><th>Anwendung</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>PH00</td><td>~1 mm</td><td>Elektronik, Uhren, kleine Geräte</td></tr>
+            <tr><td>PH0</td><td>~1.5 mm</td><td>Kleingeräte, Brillen, Modelle</td></tr>
+            <tr><td>PH1</td><td>~2.5 mm</td><td>Haushalt, leichte Elektronik</td></tr>
+            <tr><td>PH2</td><td>~4 mm</td><td>Standard, Möbel, Autos (häufigste Größe)</td></tr>
+            <tr><td>PH3</td><td>~6 mm</td><td>Schwere Konstruktionen, Traktoren</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tab 4: Tipps -->
+    <div id="tab-tips" class="tab-content">
+      <div class="card">
+        <h2>Praktische Tipps</h2>
+        <h3>1. Richtigen Schraubenzieher wählen</h3>
+        <p>
+          Der Phillips-Bit sollte ohne Spiel in den Schraubenkopf passen. Wenn er wackelt,
+          ist er zu klein — das zerstört den Schraubenkopf!
+        </p>
+        <div class="tip">
+          <strong>💡 Check:</strong>
+          Stecken Sie den Bit trocken in den Schraubenkopf. Kein Wackeln = passend.
+          Spieler Sitz = falsche Größe!
+        </div>
+
+        <h3>2. Druckausübung</h3>
+        <p>
+          Bei Phillips-Schrauben immer einen starken Axialdruck ausüben, während Sie drehen.
+          Das verhindert das "Durchdrehen" und verlängert die Lebensdauer von Bit und Schraube.
+        </p>
+
+        <h3>3. Verschleiß prüfen</h3>
+        <p>
+          Halten Sie den Schraubenzieher gegen das Licht. Eine intakte Spitze hat scharfe,
+          gerade Kanten. Abgerundete oder fehlende Zacken = austauschen!
+        </p>
+
+        <h3>4. Alternative: Torx bevorzugen</h3>
+        <p>
+          Wenn Sie viel schrauben müssen, investieren Sie in Torx-Werkzeuge. Sie bieten die
+          beste Kraftübertragung, kein Cam-out, und die Bits verschleißen kaum.
+        </p>
+        <div class="tip">
+          <strong>💡 Profi-Tipp:</strong>
+          Viele moderne Geräte (Handys, Laptops, Autos) verwenden bereits Torx-Schrauben.
+          Ein Torx-Set ist immer eine gute Investition.
+        </div>
+
+        <h3>5. Schraubenköpfe retten</h3>
+        <p>
+          Wenn ein Schraubenkopf bereits beschädigt ist, hilft manchmal:
+        </p>
+        <ul>
+          <li>Ein Gummiband über den Schraubenkopf legen → mehr Griff</li>
+          <li>Eine flache Zange als Hebel aufsetzen</li>
+          <li>Einen Schraubenextractor (linksgewindete Bohrer) verwenden</li>
+          <li>Im Notfall: Schraube ausbohren und Gewinde erneuern (Helicoil)</li>
+        </ul>
+
+        <div class="warn">
+          <strong>⚠ Nie verwenden:</strong>
+          Einen Schraubenzieher mit fehlender oder stark abgenutzter Zacke. Das zerstört
+          unweigerlich den Schraubenkopf und macht die Schraube unbrauchbar.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Schraubenzieher-Tipps &copy; 2026 — Ein Projekt zur Werkzeugkunde</p>
+  </footer>
+
+  <script>
+    function showTab(evt, tabName) {
+      // Hide all tab content
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      // Remove active class from all buttons
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      // Show selected tab and mark button active
+      document.getElementById('tab-' + tabName).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+  </script>
+</body>
+</html>
